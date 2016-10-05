@@ -17,7 +17,7 @@ Integrator::Integrator( Field<Real>& position, Field<Real>& momentum, const Basi
 	nt(new_nt),
 	dt(t/nt)
 {
-	std::cout << "Initializing integrator with parameters t=" << t << " nt=" << nt << " dt=" << dt << std::endl;
+// 	std::cout << "Initializing integrator with parameters t=" << t << " nt=" << nt << " dt=" << dt << std::endl;
 }
 
 Integrator::~Integrator() {

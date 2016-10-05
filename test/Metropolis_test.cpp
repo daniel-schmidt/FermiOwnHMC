@@ -61,7 +61,7 @@ int main() {
 		av_mag /= double(updates);
 		std::cout << "Accepted "<< accRate << std::endl;
 		std::cout << "Average magnetization: " << av_mag << std::endl;
-		fMagAbs << kappa << "\t" << av_mag << std::endl;
+		fMagAbs << kappa << "\t" << av_mag << "\t" << accRate << std::endl;
 	}
 	fMagAbs.close();
 }

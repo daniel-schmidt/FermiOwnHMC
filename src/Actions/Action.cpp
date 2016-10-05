@@ -34,9 +34,13 @@ double Action::getAction( const Field<Real>& phi) const {
 }
 
 Field<Real> Action::getForce( const Field<Real>& phi) const {
-	Field<Real> force = ( 2. + 4.*lambda*(phi.cwiseMultAndSum(phi)-1.) )*phi;
-
+// 	Field<Real> force = ( 2. + 4.*lambda*(phi.cwiseMultAndSum(phi)-1.) )*phi;
+        Field<Real> force = phi;
 	for( size_t x = 0; x < lat.getVol(); x++ ) {
+            
+                double phix = phi(x);
+                force(x) *= ( 2. + 4. * lambda * ( phix*phix - 1. ) );
+            
 		double kinetic = 0;
 		std::vector<size_t> nnIndex = lat.getNeighbours(x);
 		for( size_t nn:nnIndex ) {
