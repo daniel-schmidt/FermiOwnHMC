@@ -17,6 +17,7 @@ Integrator::Integrator( Field<Real>& position, Field<Real>& momentum, const Basi
 	nt(new_nt),
 	dt(t/nt)
 {
+	std::cout << "Initializing integrator with parameters t=" << t << " nt=" << nt << " dt=" << dt << std::endl;
 }
 
 Integrator::~Integrator() {
@@ -24,7 +25,7 @@ Integrator::~Integrator() {
 }
 
 void Integrator::integrate() {
-	p -= dt/2.*act.getForce(x);	//TODO: test if the sign is correct
+	p -= dt/2.*act.getForce(x);
 	for( size_t n = 0; n < nt-1; n++ ) {
 		x += p * dt;
 		p -= dt*act.getForce(x);

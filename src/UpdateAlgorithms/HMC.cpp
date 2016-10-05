@@ -31,7 +31,7 @@ bool HMC::update() {
 	double H_new = Hamiltonian();
 
 	double dH = std::exp(H_old-H_new);
-
+	std::cout << "exp: " << H_old-H_new << " dH=" << dH << std::endl;
 	// accept/reject step
 	bool accepted = false;
 	double r = uniformDistribution01(*randomGenerator);
@@ -40,7 +40,6 @@ bool HMC::update() {
 	else
 		phi = old;
 	std::cout << "H_old: " << H_old << " H_new: "<< H_new << " dH: " << dH << " r: " << r << " accepted: " << accepted << std::endl;
-	phi.Print();
 
 	return accepted;
 }

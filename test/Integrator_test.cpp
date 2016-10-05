@@ -45,8 +45,8 @@ int main() {
 
 	// time reversal test
 	// TODO: automate this test
-	double t = 0.6;
-	double nt = 5;
+	double t = 10;
+	double nt = 100;
 	Integrator integrator(fs0, pRand, act, t, nt);
 	integrator.integrate();
 	std::cout << "After first trajectory:" << std::endl;
@@ -65,11 +65,21 @@ int main() {
 	integrator.integrate();
 	fs0.Print();
 
+	for( size_t i = 0; i < 100; i++ ) {
+		integrator.integrate();
+	}
+	pRand *= -1.;
+	for( size_t i = 0; i < 100; i++ ) {
+			integrator.integrate();
+	}
+	std::cout << "After 100 integrations back and forth: " << std::endl;
+	fs0.Print();
+
 	std::cout << "Trying harmonic action..." << std::endl;
 	HarmonicAction hact;
 	Field<Real> pOnes(lat.getVol(), 1, &rndGen, oneInit);
 	nt=5;
-	size_t imax = 200;
+	size_t imax = 20;
 	t=25.1327/imax; // 8 pi divided in imax parts, each nt integration steps inbetween
 	Integrator hint(fs0, pOnes, hact, t, nt);
 	std::cout << "data={";
