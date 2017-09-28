@@ -23,6 +23,7 @@ public:
 	virtual ~HMC();
 
 	bool update();
+	inline double getdH() const;
 private:
 
 	double Hamiltonian();
@@ -33,7 +34,12 @@ private:
 	Field<Real> momentum;
 	Integrator integrator;
 	std::uniform_real_distribution<Real> uniformDistribution01;
+	double dH;
 };
+
+double HMC::getdH() const {
+	return dH;
+}
 
 } // namespace FermiOwn
 

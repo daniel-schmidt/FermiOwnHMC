@@ -30,7 +30,7 @@ bool Action_test(){
 	std::cout << "Action is: " << act.getAction( phi )  << " and should be 3.2" << std::endl;
 	std::cout << "Force is: ";
 	act.getForce(phi).Print();
-	std::cout<< " and should be vector of 14.8s." << std::endl;
+	std::cout<< " and should be vector of 0.8s." << std::endl;
 	lambda = 0.9;
 	kappa = 0.3;
 	Action act2( lat, kappa, lambda );

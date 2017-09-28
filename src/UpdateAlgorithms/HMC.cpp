@@ -14,7 +14,8 @@ HMC::HMC( double t, size_t nt, const BasicAction& naction, Field<Real>& nphi, st
 	act(naction),
 	phi(nphi),
 	momentum(phi.getSize(), 1, randomGenerator, gaussianInit),
-	integrator(phi, momentum, act, t, nt)
+	integrator(phi, momentum, act, t, nt),
+	dH(0.)
 {
 }
 
@@ -29,13 +30,12 @@ bool HMC::update() {
 	Field<Real> old = phi;
 	integrator.integrate();
 	double H_new = Hamiltonian();
-
-	double dH = std::exp(H_old-H_new);
+	dH = H_old - H_new;
 // 	std::cout << "difference of action: " << H_old-H_new << " exponential=" << dH << std::endl;
 	// accept/reject step
 	bool accepted = false;
 	double r = uniformDistribution01(*randomGenerator);
-	if( r < dH )
+	if( r < std::exp(dH) )
 		accepted = true;
 	else
 		phi = old;

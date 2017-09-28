@@ -31,10 +31,10 @@ int main() {
 
 	// initialize HMC
 
-	for( size_t HMCnt = 10; HMCnt <= 1000; HMCnt*= 10 )	{
+	for( size_t HMCnt = 10; HMCnt <= 1e6; HMCnt*= 10 )	{
 		HMC updater( 1., HMCnt, act, phi, &rndGen );
 		updater.update();
-                std::cout << std::endl;
+        std::cout << HMCnt<< "\t" << updater.getdH() << std::endl;
 	}
 
 	size_t updates = 1000;
